@@ -28,8 +28,6 @@ Supports **light/dark themes**, filtering, and persistent theme preference.
 git clone https://github.com/yourusername/angular-todo-app.git
 cd angular-todo-app
 
-```bash
 npm install
 
-```bash
 ng serve

@@ -1,0 +1,37 @@
+/* === GLOBAL VARIABLES === */
+:root {
+  --bright-blue: hsl(220, 98%, 61%);
+  --check-bg: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+  /* Light Theme */
+  --bg-color: hsl(0, 0%, 98%);
+  --card-bg: hsl(0, 0%, 100%);
+  --text-color: hsl(235, 19%, 35%);
+  --placeholder: hsl(236, 9%, 61%);
+  --border-color: hsl(236, 33%, 92%);
+  --footer-text: hsl(236, 9%, 61%);
+}
+
+[data-theme='dark'] {
+  --bg-color: hsl(235, 21%, 11%);
+  --card-bg: hsl(235, 24%, 19%);
+  --text-color: hsl(234, 39%, 85%);
+  --placeholder: hsl(234, 11%, 52%);
+  --border-color: hsl(233, 14%, 35%);
+  --footer-text: hsl(234, 11%, 52%);
+}
+
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  min-height: 100vh;
+  background-color: var(--bg-color);   /* ✅ Uses variable */
+  color: var(--text-color);            /* ✅ Uses variable */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

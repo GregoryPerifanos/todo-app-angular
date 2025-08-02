@@ -1,59 +1,35 @@
-# TodoAppAngular
+# Angular Todo App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+A responsive Todo App built with **Angular** and styled to match the official [Frontend Mentor Todo App Challenge](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW).  
+Supports **light/dark themes**, filtering, and persistent theme preference.
 
-## Development server
 
-To start a local development server, run:
+## Features
+
+-  Add, toggle, and delete todos
+-  Filter by All / Active / Completed
+-  Clear Completed button
+-  Light and Dark theme support (auto-detects system preference)
+-  Responsive design for desktop and mobile
+-  Matches Frontend Mentor design specs (fonts, colors, spacing)
+
+
+## 🛠️ Built With
+
+- [Angular](https://angular.io/) (Standalone Components)
+- TypeScript
+- SCSS/CSS with CSS variables for theming
+- LocalStorage for theme persistence
+
+## How to Install
+
+### 1 Clone the repo
+```bash
+git clone https://github.com/yourusername/angular-todo-app.git
+cd angular-todo-app
+
+```bash
+npm install
 
 ```bash
 ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

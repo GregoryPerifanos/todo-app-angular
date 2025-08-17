@@ -1,0 +1,22 @@
+<div class="todo-footer">
+  <span>{{ activeCount }} items left</span>
+
+  <div class="filters">
+    <button
+      (click)="setFilter('all')"
+      [class.active]="currentFilter === 'all'"
+    >All</button>
+
+    <button
+      (click)="setFilter('active')"
+      [class.active]="currentFilter === 'active'"
+    >Active</button>
+
+    <button
+      (click)="setFilter('completed')"
+      [class.active]="currentFilter === 'completed'"
+    >Completed</button>
+  </div>
+
+  <button class="clear-completed" (click)="onClearCompleted()">Clear Completed</button>
+</div>

@@ -1,0 +1,60 @@
+/* === Header Container === */
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* === Title (TODO text) === */
+.todo-header h1 {
+  letter-spacing: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--title-color);
+  text-transform: uppercase;
+}
+
+/* === Theme Toggle Button === */
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Theme Icon (sun/moon) === */
+.theme-toggle img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6; /* Semi-transparent like FM */
+  transition: opacity 0.3s ease;
+  filter: brightness(0) invert(1); /* Makes black icons appear white in dark mode */
+}
+
+/* Light theme shows the icon as-is */
+body[data-theme='light'] #theme-toggle img {
+  filter: none;
+}
+
+/* Hover effect */
+#theme-toggle:hover img {
+  opacity: 1;
+}
+
+input[type='text'] {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--input-bg-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: none;
+  outline: none;
+}

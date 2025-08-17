@@ -1,0 +1,17 @@
+.theme-toggle-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.theme-toggle-button img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.theme-toggle-button:hover img {
+  opacity: 1;
+}

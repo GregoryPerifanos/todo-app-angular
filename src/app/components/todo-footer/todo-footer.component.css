@@ -1,0 +1,51 @@
+.todo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-size: 0.85rem;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  border-radius: 0 0 5px 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.filters button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font: inherit;
+  transition: color 0.2s ease;
+}
+
+.filters button.active {
+  color: hsl(220, 98%, 61%);
+}
+
+.filters button:hover {
+  color: hsl(235, 19%, 35%);
+}
+
+[data-theme='dark'] .filters button:hover {
+  color: hsl(234, 39%, 85%);
+}
+
+/* Clear Completed */
+.clear-completed {
+  all: unset; 
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.clear-completed:hover {
+  color: var(--text-primary);
+}

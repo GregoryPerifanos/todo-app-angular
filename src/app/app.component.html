@@ -4,54 +4,28 @@
 <!-- === TODO APP CONTAINER === -->
 <div class="todo-app">
   <!-- HEADER -->
-  <div class="todo-header">
-    <h1>TODO</h1>
-    <button class="theme-toggle" (click)="toggleTheme()">
-      <img [src]="isDark ? '/assets/icon-sun.svg' : '/assets/icon-moon.svg'" alt="Toggle theme">
-    </button>
-  </div>
+  <app-todo-header></app-todo-header>
+
 
   <!-- INPUT -->
-  <form (submit)="addTodo(); $event.preventDefault()">
-    <input
-      class="todo-input"
-      type="text"
-      placeholder="Create a new todo..."
-      [(ngModel)]="newTodo"
-      name="todo"
-    />
-  </form>
+  <app-todo-form (add)="addTodo($event)"></app-todo-form>
+
 
   <!-- TODO LIST -->
-  <ul class="todo-list">
-    <li *ngFor="let todo of filteredTodos">
-      <label>
-        <input
-          class="todo-checkbox"
-          type="checkbox"
-          [checked]="todo.completed"
-          (change)="toggleTodo(todo)"
-        />
-        <span class="title" [class.completed]="todo.completed">{{ todo.title }}</span>
-      </label>
-      <button class="delete" (click)="deleteTodo(todo.id)">
-        <img src="/assets/icon-cross.svg" alt="Delete">
-      </button>
-    </li>
-  </ul>
+  <app-todo-list
+  [todos]="filteredTodos"
+  (toggle)="toggleTodo($event)"
+  (delete)="deleteTodo($event)"
+></app-todo-list>
 
   <!-- FOOTER -->
-  <div class="todo-footer">
-    <span>{{ activeCount }} items left</span>
+  <app-todo-footer
+  [activeCount]="activeCount"
+  [currentFilter]="currentFilter"
+  (filterChange)="setFilter($event)"
+  (clearCompleted)="clearCompleted()"
+></app-todo-footer>
 
-    <div class="filters">
-      <button (click)="setFilter('all')" [class.active]="currentFilter === 'all'">All</button>
-      <button (click)="setFilter('active')" [class.active]="currentFilter === 'active'">Active</button>
-      <button (click)="setFilter('completed')" [class.active]="currentFilter === 'completed'">Completed</button>
-    </div>
-
-    <button class="clear" (click)="clearCompleted()">Clear Completed</button>
-  </div>
 
   <!-- DRAG NOTE -->
   <p class="drag-note">Drag and drop to reorder list</p>

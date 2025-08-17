@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { ThemeService } from './services/theme.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TodoHeaderComponent } from "./components/todo-header/todo-header.component";
+import { TodoFormComponent } from "./components/todo-form/todo-form.component";
+import { TodoListComponent } from "./components/todo-list/todo-list.component";
+import { TodoFooterComponent } from "./components/todo-footer/todo-footer.component";
 
 interface Todo {
   id: number;
@@ -13,7 +17,7 @@ type Filter = 'all' | 'active' | 'completed';
 
 @Component({
   selector: 'app-root',
-   imports: [CommonModule, FormsModule],
+   imports: [CommonModule, FormsModule, TodoHeaderComponent, TodoFormComponent, TodoListComponent, TodoFooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
@@ -25,26 +29,26 @@ export class AppComponent {
   constructor(public themeService: ThemeService) {}
 
   // ✅ Add Todo
-  addTodo() {
-    const title = this.newTodo.trim();
-    if (!title) return;
-
+  addTodo(title: string) {
+  if (title.trim()) {
     this.todos.push({
-      id: Date.now(),
+      id: Date.now(), 
       title,
-      completed: false,
+      completed: false
     });
-
-    this.newTodo = '';
   }
+}
 
   // ✅ Toggle completed state
-  toggleTodo(todo: Todo) {
+  toggleTodo(id: number) {
+    const todo = this.todos.find(t => t.id === id);
+  if (todo) {
     todo.completed = !todo.completed;
+  }
   }
 
   // ✅ Delete Todo
-  deleteTodo(id: number) {
+  deleteTodo(id: number): void {
     this.todos = this.todos.filter(todo => todo.id !== id);
   }
 

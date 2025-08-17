@@ -1,0 +1,10 @@
+<li class="todo-item" [class.completed]="todo.completed">
+  <label class="checkbox-container">
+    <input type="checkbox" [checked]="todo.completed" (change)="onToggle()" />
+    <span class="checkmark"></span>
+  </label>
+  <span class="title">{{ todo.title }}</span>
+  <button class="delete-btn" (click)="onDelete()">
+    <img src="assets/icon-cross.svg" alt="Delete" />
+  </button>
+</li>

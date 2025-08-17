@@ -1,0 +1,10 @@
+.todo-list {
+  background-color: var(--card-bg);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+  list-style: none;
+  padding: 0;
+}

@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms'; // ✅ Add this
 export class TodoFormComponent {
   @Output() add = new EventEmitter<string>();
   newTodo = '';
+  newTodoTitle: string | undefined;
 
   submitTodo() {
     if (this.newTodo.trim()) {

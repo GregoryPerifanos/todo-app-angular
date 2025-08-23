@@ -9,14 +9,17 @@ import { FormsModule } from '@angular/forms'; // ✅ Add this
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent {
-  @Output() add = new EventEmitter<string>();
+  @Output() addTodo = new EventEmitter<string>();
   newTodo = '';
   newTodoTitle: string | undefined;
 
   submitTodo() {
-    if (this.newTodo.trim()) {
-      this.add.emit(this.newTodo);
-      this.newTodo = '';
-    }
+     const trimmed = this.newTodo.trim();
+    if (!trimmed) return;
+
+    this.addTodo.emit(trimmed);
+
+    // Reset input after successful submission
+    this.newTodo = '';
   }
 }

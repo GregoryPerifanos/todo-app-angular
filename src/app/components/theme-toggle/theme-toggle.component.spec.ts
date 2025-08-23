@@ -4,9 +4,10 @@ import { ThemeService } from '../../services/theme.service';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
+// ✅ MockThemeService simulates ThemeService behavior for testing
 class MockThemeService {
-  currentTheme = 'light';
-  toggleTheme = jasmine.createSpy('toggleTheme');
+  currentTheme: 'light' | 'dark' = 'light';
+  toggleTheme = jasmine.createSpy('toggleTheme'); // spy to track if it was called
 }
 
 describe('ThemeToggleComponent', () => {
@@ -16,32 +17,38 @@ describe('ThemeToggleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ThemeToggleComponent],
-      providers: [{ provide: ThemeService, useClass: MockThemeService }]
+      imports: [ThemeToggleComponent], //  because it's a standalone component
+      providers: [
+        { provide: ThemeService, useClass: MockThemeService } // use mock service
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ThemeToggleComponent);
     component = fixture.componentInstance;
-    themeService = TestBed.inject(ThemeService) as any;
-    fixture.detectChanges();
+    themeService = TestBed.inject(ThemeService) as any; // typecast for mock access
+    fixture.detectChanges(); // trigger initial binding/render
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeTruthy(); // basic sanity test
   });
 
   it('should render the moon icon when theme is light', () => {
-    component['themeService'].currentTheme = 'light';
+    // Simulate light mode
+    themeService.currentTheme = 'light';
     fixture.detectChanges();
 
+    // Get <img> element and check src
     const imgEl: HTMLImageElement = fixture.debugElement.query(By.css('img')).nativeElement;
     expect(imgEl.src).toContain('icon-moon.svg');
   });
 
   it('should render the sun icon when theme is dark', () => {
-    component['themeService'].currentTheme = 'dark';
+    // Simulate dark mode
+    themeService.currentTheme = 'dark';
     fixture.detectChanges();
 
+    // Get <img> element and check src
     const imgEl: HTMLImageElement = fixture.debugElement.query(By.css('img')).nativeElement;
     expect(imgEl.src).toContain('icon-sun.svg');
   });
@@ -50,6 +57,7 @@ describe('ThemeToggleComponent', () => {
     const button: DebugElement = fixture.debugElement.query(By.css('button'));
     button.triggerEventHandler('click', null);
 
+    // ✅ Check that the service's method was triggered
     expect(themeService.toggleTheme).toHaveBeenCalled();
   });
 });

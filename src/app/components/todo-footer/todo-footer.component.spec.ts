@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TodoFooterComponent } from './todo-footer.component';
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 describe('TodoFooterComponent', () => {
   let component: TodoFooterComponent;
@@ -8,44 +9,48 @@ describe('TodoFooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TodoFooterComponent]
+      imports: [TodoFooterComponent] // because it's a standalone component
     }).compileComponents();
 
     fixture = TestBed.createComponent(TodoFooterComponent);
     component = fixture.componentInstance;
+
+    // Default values for testing
     component.activeCount = 3;
     component.currentFilter = 'all';
+
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
   it('should display the active todo count', () => {
-    const counter = fixture.debugElement.query(By.css('.todo-count')).nativeElement;
-    expect(counter.textContent).toContain('3 items left');
+    const spanEl: HTMLElement = fixture.debugElement.query(By.css('span')).nativeElement;
+    expect(spanEl.textContent).toContain('3 items left');
   });
 
-  it('should emit filter change on filter button click', () => {
+  it('should emit filterChange when a filter button is clicked', () => {
     spyOn(component.filterChange, 'emit');
 
-    const buttons = fixture.debugElement.queryAll(By.css('.filters button'));
-    buttons[1].nativeElement.click(); // e.g., "Active"
+    // Click "Active" button
+    const filterButtons = fixture.debugElement.queryAll(By.css('.filters button'));
+    filterButtons[1].nativeElement.click(); // "Active"
 
     expect(component.filterChange.emit).toHaveBeenCalledWith('active');
   });
 
-  it('should highlight the active filter', () => {
-    const activeBtn = fixture.debugElement.query(By.css('.filters .active')).nativeElement;
-    expect(activeBtn.textContent.toLowerCase()).toContain('all');
+  it('should apply "active" class to the current filter button', () => {
+    const activeBtn: HTMLElement = fixture.debugElement.query(By.css('.filters .active')).nativeElement;
+    expect(activeBtn.textContent!.trim().toLowerCase()).toBe('all');
   });
 
-  it('should emit clearCompleted on button click', () => {
+  it('should emit clearCompleted when Clear Completed button is clicked', () => {
     spyOn(component.clearCompleted, 'emit');
 
-    const clearBtn = fixture.debugElement.query(By.css('#clear-completed')).nativeElement;
-    clearBtn.click();
+    const clearBtn: DebugElement = fixture.debugElement.query(By.css('.clear-completed'));
+    clearBtn.nativeElement.click();
 
     expect(component.clearCompleted.emit).toHaveBeenCalled();
   });

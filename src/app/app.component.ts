@@ -22,6 +22,7 @@ type Filter = 'all' | 'active' | 'completed';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  [x: string]: any;
   todos: Todo[] = [];
   newTodo: string = '';
   currentFilter: Filter = 'all';
